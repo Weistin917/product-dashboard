@@ -15,7 +15,8 @@ function App() {
   function addToCart( productName ) {
     const tempCart = cart.slice();
     const i = products.findIndex((p) => p.name === productName);
-    tempCart[i] += 1;
+    console.log(i);
+    tempCart[i] = tempCart[i] + 1;
     setCart(tempCart);
     setAllItems(allItems + 1);
   }
@@ -23,7 +24,7 @@ function App() {
   function removeFromCart( productName ) {
     const tempCart = cart.slice();
     const i = products.findIndex((p) => p.name === productName);
-    tempCart[i] -= 1;
+    tempCart[i] = tempCart[i] - 1;
     setCart(tempCart);
     setAllItems(allItems - 1);
   }
@@ -32,7 +33,7 @@ function App() {
     <BrowserRouter>
       <Appbar numItems={allItems} />
       <Container style={{marginTop: "20px"}}>
-        <AppRoutes addItem={addToCart} removeItem={removeFromCart} />
+        <AppRoutes cart={cart.filter((item) => item > 0)} addItem={addToCart} removeItem={removeFromCart} />
       </Container>
     </BrowserRouter>
   );

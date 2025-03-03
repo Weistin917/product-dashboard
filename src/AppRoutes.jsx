@@ -4,12 +4,12 @@ import Home from './components/Home';
 import Details from './components/Details';
 import ShoppingCart from './components/ShoppingCart';
 
-function AppRoutes({ addItem, removeItem }) {
+function AppRoutes({ cart, addItem, removeItem }) {
     return (
         <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/details/:productName' element={<Details addItem={addItem} />} />
-            <Route path='/shoppingcart' element={<ShoppingCart />} />
+            <Route path='/shoppingcart' element={<ShoppingCart shopcart={cart} />} />
         </Routes>
     );
 }

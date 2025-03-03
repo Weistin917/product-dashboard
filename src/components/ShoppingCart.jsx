@@ -6,15 +6,19 @@ function ShoppingCart({ shopcart }) {
     return (
         <>
             <h2>Shopping Cart</h2>
-            <Container>
-                <Row>
-                    <h6>ProductName</h6>
-                </Row>
-                <Row>
-                    <Col lg={9}> <h7>Precio: $xx.xx | Quantity: n</h7> </Col>
-                    <Col lg={3}> <Button variant='outline-info'> + </Button> <h7> n </h7> <Button variant='outline-secondary'> - </Button> <Button variant='danger'>Remove</Button> </Col>
-                </Row>
-            </Container>
+            {
+                shopcart.map((quant, i) => (
+                    <Container>
+                        <Row>
+                            <h6>{products[i].name}</h6>
+                        </Row>
+                        <Row>
+                            <Col lg={9}> <h7>Precio: ${products[i].price} | Quantity: {quant}</h7> </Col>
+                            <Col lg={3}> <Button variant='outline-info'> + </Button> <h7> {quant} </h7> <Button variant='outline-secondary'> - </Button> <Button variant='danger'>Remove</Button> </Col>
+                        </Row>
+                    </Container>
+                ))
+            }
         </>
     )
 }

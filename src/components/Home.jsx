@@ -1,14 +1,20 @@
-
+import React from 'react';
+import { Stack } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import { products } from "../assets/Products";
 
 function Home() {
     return (
         <>
         <h2>Product List</h2>
-        <ul>
-            <li>P1</li>
-            <li>P2</li>
-            <li>P3</li>
-        </ul>
+        <Stack gap={3} style={{ paddingTop: 20, paddingLeft: 20, paddingRight: 20, paddingBottom: 20}}>
+            {products.map((product) => (
+                <>
+                    <NavLink to={`/details/${product.name}`} style={() => ({fontSize:24, fontWeight:"bold", textDecoration:"none"})}>{product.name}</NavLink>
+                    <h4>Price: ${`${product.price}`}</h4>
+                </>
+            ))}
+        </Stack>
         </>
     );
 }

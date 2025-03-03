@@ -15,13 +15,12 @@ function App() {
   function addToCart( productName ) {
     const tempCart = cart.slice();
     const i = products.findIndex((p) => p.name === productName);
-    console.log(i);
     tempCart[i] = tempCart[i] + 1;
     setCart(tempCart);
     setAllItems(allItems + 1);
   }
 
-  function removeFromCart( productName ) {
+  function subFromCart( productName ) {
     const tempCart = cart.slice();
     const i = products.findIndex((p) => p.name === productName);
     tempCart[i] = tempCart[i] - 1;
@@ -29,11 +28,19 @@ function App() {
     setAllItems(allItems - 1);
   }
 
+  function removeFromCart( productName ) {
+    const tempCart = cart.slice();
+    const i = products.findIndex((p) => p.name === productName);
+    tempCart[i] = 0;
+    setAllItems(allItems - cart[i]);
+    setCart(tempCart);
+  }
+
   return (
     <BrowserRouter>
       <Appbar numItems={allItems} />
       <Container style={{marginTop: "20px"}}>
-        <AppRoutes cart={cart.filter((item) => item > 0)} addItem={addToCart} removeItem={removeFromCart} />
+        <AppRoutes cart={cart} addItem={addToCart} subItem={subFromCart} removeItem={removeFromCart} />
       </Container>
     </BrowserRouter>
   );

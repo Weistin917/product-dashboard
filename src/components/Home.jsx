@@ -10,7 +10,7 @@ function Home() {
         <Stack gap={3} style={{ paddingTop: 20, paddingLeft: 20, paddingRight: 20, paddingBottom: 20}}>
             {products.map((product) => (
                 <>
-                    <NavLink to={`/details/${product.name}`} style={() => ({fontSize:24, fontWeight:"bold", textDecoration:"none"})}>{product.name}</NavLink>
+                    <NavLink key={product.name} to={`/details/${product.name}`} style={() => ({fontSize:24, fontWeight:"bold", textDecoration:"none"})}>{product.name}</NavLink>
                     <h4>Price: ${`${product.price}`}</h4>
                 </>
             ))}

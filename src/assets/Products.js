@@ -8,5 +8,10 @@ export const products = [
         name: "Snoopy clock alarm",
         price: 25.0,
         description: "A clock with Snoopy design."
+    },
+    {
+        name: "Snoopy's keychain",
+        price: 15.0,
+        description: "A small keychain of Snoopy sleeping."
     }
 ]

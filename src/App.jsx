@@ -6,13 +6,33 @@ import { useState } from 'react'
 import Appbar from './components/Appbar'
 import AppRoutes from './AppRoutes'
 import './App.css';
+import { products } from "./assets/Products";
 
 function App() {
+  const [cart, setCart] = useState(Array(products.length).fill(0)); // shopping cart state; assigns a quantity to each product.
+  const [allItems, setAllItems] = useState(0);
+
+  function addToCart( productName ) {
+    const tempCart = cart.slice();
+    const i = products.findIndex((p) => p.name === productName);
+    tempCart[i] += 1;
+    setCart(tempCart);
+    setAllItems(allItems + 1);
+  }
+
+  function removeFromCart( productName ) {
+    const tempCart = cart.slice();
+    const i = products.findIndex((p) => p.name === productName);
+    tempCart[i] -= 1;
+    setCart(tempCart);
+    setAllItems(allItems - 1);
+  }
+
   return (
     <BrowserRouter>
-      <Appbar />
+      <Appbar numItems={allItems} />
       <Container style={{marginTop: "20px"}}>
-        <AppRoutes />
+        <AppRoutes addItem={addToCart} removeItem={removeFromCart} />
       </Container>
     </BrowserRouter>
   );
